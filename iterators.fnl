@@ -15,7 +15,7 @@
       nil nil
       v (if (pred v) v (filter-helper)))))
 
-(fn iterate [t] (co.wrap (each [_ v (ipairs t)] (co.yield v))))
+(fn iterate-seq [t] (co.wrap (each [_ v (ipairs t)] (co.yield v))))
 
 (fn for-each [it f] (each [v it] (f v)))
 
@@ -31,7 +31,7 @@
 
 {: filter
  : first
- : iterate
+ : iterate-seq
  : for-each
  : last
  : repeat
