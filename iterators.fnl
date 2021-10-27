@@ -1,5 +1,14 @@
 (import-macros co (: ... :gsub "(.*)%.iterators$" "%1.coroutine"))
 
+(fn first [it] (it))
+
+(fn last [it]
+  (fn last-helper [prev]
+    (match (it)
+      nil prev
+      v (last-helper v)))
+  (last-helper nil))
+
 (fn filter [it pred]
   (fn filter-helper []
     (match (it)
@@ -19,7 +28,9 @@
       (co.yield v))))
 
 {: filter
+ : first
  : for-each
+ : last
  : repeat
  : take-n
  : take-while}
